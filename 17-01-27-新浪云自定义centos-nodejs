@@ -1,8 +1,13 @@
 #新浪云-nodejs
 选择自定义Centos，新浪云自带一键进入终端，然后开始部署。
 >yum update -y //更新
->wget https://nodejs.org/dist/v6.9.4/node-v6.9.4-linux-x86.tar.xz
->tar -xvf node-v6.9.4-linux-x86.tar.xz
+>wget https://nodejs.org/dist/v6.9.4/node-v6.9.4.tar.gz
+>tar -zxvf node-v6.9.4.tar.gz
+
+(1)配置一下安装
+进入>cd /node-v6.9.4
+配置>configure --prefix=/nodejs(我自己配置的目录为/nodejs）
+安装>make && make install
 
 快速配置（下面二选一）
 （1）配置环境变量
