@@ -1,4 +1,5 @@
 自定义Centos，新浪云自带一键进入终端，然后开始部署。
-yum update -y //更新
-wget https://nodejs.org/dist/v6.9.4/node-v6.9.4-linux-x64.tar.xz
-rs
+>yum update -y //更新
+>wget https://nodejs.org/dist/v6.9.4/node-v6.9.4-linux-x64.tar.xz
+>tar -zxvf node-v6.9.4-linux-x64.tar.xz
+  这个时候显示出错，忘记是什么错了，可能是因为系统是32位的，而我下载的是64位系统，不知道为什么突然新浪云炸了，可能因为是新年？明天更
