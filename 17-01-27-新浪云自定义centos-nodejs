@@ -22,7 +22,25 @@ PATH=$PATH:/nodejs/bin
 然后保存
 
 source /etc/profile
-
-
+  
+  
   17-01-28
+//////////
+安装Express框架
+#npm install express -gd  
+
+创建开发目录
+#express app//app为你的开发的程序名称
+
+安装程序依赖组件
+
+进入app目录，输入：
+#npm install  
+
+安装完成，可以测试整体环境是否成功安装。
+在app目录下，输入
+
+#node app  
+
+打开浏览器，输入http://localhost:3000是否能看到”Express”。客户机访问，轻开启3000端口进行测试。
  
