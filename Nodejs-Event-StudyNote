@@ -1,0 +1,5 @@
+17-01-31
+#内容基于https://nodejs.org/api/events.html#
+/////////////////////////////////////
+eventEmitter.on(var,function);//添加参数以及方法
+eventEmitter.emit(var);//启动并注入参数
