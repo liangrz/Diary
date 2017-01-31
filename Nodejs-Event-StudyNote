@@ -3,10 +3,15 @@
 写着写着变成了简化和翻译了。。
 ————————————————————————————————————————————————
 1、事件的基础
-eventEmitter.on(var,function());//添加参数以及函数
-eventEmitter.emit(var);//启动并注入参数
-
-如果function里有参数，可以按以下方式传参数
+  事件是从events中获得。
+    const EventEmitter = require('event');//获得模块
+    MyEmitter extends EventEmitter{}//继承
+    const myEmitter = new MyEmitter;//新建实例
+  
+    myEmitter.on(var,function());//添加参数
+    myEmitter.emit(var);//启动并注入参数，当var等于on里面的var，就会触发function,
+    
+    如果function里有参数，可以按以下方式传参数
 Example 1
 {/////////////////////////////////////
 eventEmitter.on('emitWord',function(a,b){
@@ -26,6 +31,13 @@ emit里的'c','d'传进到a,b参数中，也可以在事件函数中添加consol
 ————————————————————————————————————————————————
 2、事件的同步异步
   一般情况下事件都是同步的，但是可以通过setImmedicate()或者process.nextTick()转换成异步。
+  const myEmitter = new MyEmitter();
+  myEmitter.on('event', (a, b) => {
+  setImmediate(() => {
+    console.log('this happens asynchronously');
+    });
+  });
+  myEmitter.emit('event', 'a', 'b');
 ————————————————————————————————————————————————
 3、一次性事件
   正常情况下事件调用完之后可以继续调用；
@@ -34,12 +46,52 @@ emit里的'c','d'传进到a,b参数中，也可以在事件函数中添加consol
   });
   eventEmitter.emit('a');//1
   eventEmitter.emit('a');//2
-  使用once把事件寄存完后，调用一次就会被销毁。
+  
+  使用once把事件寄存完后，调用一次就会被销毁。
   eventEmitter.once('a',()=>{
     console.log(++m);
   });
   eventEmitter.emit('a');//1
   eventEmitter.emit('a');//
 ————————————————————————————————————————————————
-4、
+4、错误事件
+  当触发器有错误出现时，就会触发
+    eventEmitter.emit('error');
+  如果事件触发器中没有寄存过error的事件触发器，就会输出堆栈轨迹(系统运行程序轨迹),然后程序退出。
+  为了防止进程终止，可以这样使用process.on('uncaughtException',()=>{});
+  
+  const myEmitter = new MyEmitter();
+
+  process.on('uncaughtException', (err) => {
+    console.log('whoops! there was an error');
+  });
+
+  myEmitter.emit('error', new Error('whoops!'));
   
+  最好事件触发器里面装载'error'的事件  
+  
+5、newListener
+  每次事件触发器触发事件，都会触发newListener事件，而且newListener会比其他事件早
+  myEmitter.on('newListener',()=>{
+    console.log('go');
+  });
+  myEmitter.on('hi',()=>{
+    console.log('hi');
+  });
+  myEmitter.emit('hi');
+  //go
+  //hi
+  
+6、杂项
+  removeListener
+  defaultMaxListeners//默认是10，可以通过
+  emit();
+  eventNames();
+  getMaxListeners()
+  listenerCount(eventName)
+  listeners(eventName)
+  prependListener(eventName, listener)
+  prependOnceListener(eventName, listener)
+  removeAllListeners([eventName])
+  removeListener(eventName, listener)
+  setMaxListeners(n)
