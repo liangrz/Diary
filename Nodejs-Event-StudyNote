@@ -1,5 +1,45 @@
 17-01-31
-#内容基于https://nodejs.org/api/events.html#
-/////////////////////////////////////
-eventEmitter.on(var,function);//添加参数以及方法
+内容基于https://nodejs.org/api/events.html
+写着写着变成了简化和翻译了。。
+————————————————————————————————————————————————
+1、事件的基础
+eventEmitter.on(var,function());//添加参数以及函数
 eventEmitter.emit(var);//启动并注入参数
+
+如果function里有参数，可以按以下方式传参数
+Example 1
+{/////////////////////////////////////
+eventEmitter.on('emitWord',function(a,b){
+  console.log('i am an event emitted by emitWord');
+  console.log(a);
+  console.log(b);
+});
+
+evenEmitter.emit('emitWord','c','d');
+  //Prints
+  //i am an event emitted by emitWord
+  //c
+  //d
+/////////////////////////////////////}
+emit里的'c','d'传进到a,b参数中，也可以在事件函数中添加console.log(this);了解这个事件的一些属性。
+如果是在箭头函数()=>{}添加console.log(this);只会得到一个{}。
+————————————————————————————————————————————————
+2、事件的同步异步
+  一般情况下事件都是同步的，但是可以通过setImmedicate()或者process.nextTick()转换成异步。
+————————————————————————————————————————————————
+3、一次性事件
+  正常情况下事件调用完之后可以继续调用；
+  eventEmitter.on('a',()=>{
+    console.log(++m);
+  });
+  eventEmitter.emit('a');//1
+  eventEmitter.emit('a');//2
+  使用once把事件寄存完后，调用一次就会被销毁。
+  eventEmitter.once('a',()=>{
+    console.log(++m);
+  });
+  eventEmitter.emit('a');//1
+  eventEmitter.emit('a');//
+————————————————————————————————————————————————
+4、
+  
