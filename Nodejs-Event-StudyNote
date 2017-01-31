@@ -83,15 +83,78 @@ emit里的'c','d'传进到a,b参数中，也可以在事件函数中添加consol
   //hi
   
 6、杂项
-  removeListener
-  defaultMaxListeners//默认是10，可以通过
-  emit();
-  eventNames();
-  getMaxListeners()
-  listenerCount(eventName)
-  listeners(eventName)
-  prependListener(eventName, listener)
-  prependOnceListener(eventName, listener)
-  removeAllListeners([eventName])
-  removeListener(eventName, listener)
-  setMaxListeners(n)
+———————————————————————————————————————————————— 
+（1）defaultMaxListeners//默认是10，可以通过setMaxListeners(n);设置最大触发器
+       setMaxListeners(n)
+        getMaxListeners()
+  
+  emitter.setMaxListeners(emitter.getMaxListeners() + 1);//+1
+  emitter.on('event',()=>{
+    Math.max(emitter.getMaxListeners() - 1, 0)
+  });
+
+———————————————————————————————————————————————— 
+(2) eventNames()//获取这个触发器所有的事件名称
+  
+      const EventEmitter = require('events');
+      const myEE = new EventEmitter();
+      myEE.on('foo', () => {});
+      myEE.on('bar', () => {});
+
+      const sym = Symbol('symbol');
+      myEE.on(sym, () => {});
+
+      console.log(myEE.eventNames());
+      // Prints: [ 'foo', 'bar', Symbol(symbol) ]
+————————————————————————————————————————————————  
+(3) emitter.listenerCount(eventName)//获取事件数量
+ 
+  myEmitter.on('event',()=>{
+	  console.log('A');
+  });
+  myEmitter.on('event',()=>{
+	  console.log('C');
+  });
+
+console.log(myEmitter.listenerCount('event'));
+  //Prints:
+  //2
+
+  listeners(eventName)//获取触发器属性
+  
+    server.on('connection', () => {
+      console.log('someone connected!');
+    });
+    console.log((server.listeners('connection')));
+    //Prints:
+    //[[Function]]
+———————————————————————————————————————————————— 
+(4)prependListener(eventName, listener)
+  prependOnceListener(eventName, listener)// 这个懒得解释，看代码
+  
+    myEmitter.prependOnceListener('event',(event,listener)=>{
+	    console.log('B');		
+    });
+    myEmitter.on('event',()=>{
+	   console.log('A');
+    });
+   myEmitter.emit('event','event');
+   myEmitter.emit('event','event');
+   
+   //print
+   //B
+   //A
+   //A
+————————————————————————————————————————————————  
+(5)removeListener//移除时候的附属品
+   server.once(removeListener,()=>{
+      console.log('Removed');
+   });
+  
+  removeListener(eventName, listener)//移除对应某个方法
+    server.on('connection', callback);
+    // ...
+    server.removeListener('connection', callback);
+  
+  removeAllListeners([eventName])移除全部
+  
