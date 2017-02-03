@@ -99,6 +99,23 @@ PS:A TypeError will be thrown if array is not an Array.
   console.log(buf);
   ————————————————————————————————————————————————————————
 6.Buffer.allocUnsafe(size)
+      Class Property: Buffer.poolSize
+                      buf1.compare(buf2);//return is the different
   
-  Explain:the different Unsafe and Buffer.alloc  
+  Explain:
+  //The different between allocUnsafe and alloc:
+  //Calling the Buffer.allocU() can be significantly slower than the alternative Buffer.allco() but ensures that the newly created
+  Buffer instance contents will never contain sensitive data.
+  ————————————————————————————————————————————————————————
+  Example：
+  const buf = Buffer.allocUnsafe(5);
+
+  // Prints: (contents may vary): <Buffer 78 e0 82 02 01>
+  console.log(buf);
+  
+  buf.fill(0);
+
+  // Prints: <Buffer 00 00 00 00 00>
+  console.log(buf);
+  ————————————————————————————————————————————————————————
   
