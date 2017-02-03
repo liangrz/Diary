@@ -1,3 +1,10 @@
+Catalog
+1.Buffer.from(array)
+2.Buffer.from(arrayBuffer, byteOffset , length) 
+3.Buffer.from(buffer)//Copy
+4.Buffer.from(string, encoding)
+5.Buffer.alloc(size, fill, encoding) 
+
 1.Buffer.from(array)//Base:set a Buffer
   Buffer.from(array) = 8位字节为单元的内容
   Buffer.from('buffer');//Buffer 62 75 66 66 65 72
@@ -41,7 +48,7 @@ PS:A TypeError will be thrown if array is not an Array.
   console.log(buf2.toString());
   ————————————————————————————————————————————————————————
  
-4.Buffer.from(string[, encoding])
+4.Buffer.from(string, encoding)
   
   Explain//
   //string <String> A string to encode.
@@ -65,4 +72,33 @@ PS:A TypeError will be thrown if array is not an Array.
   ————————————————————————————————————————————————————————
   
 5.Buffer.alloc(size, fill, encoding) 
- 
+  
+  Explain//
+  //size <Integer> The desired length of the new Buffer
+  //fill <String> | <Buffer> | <Integer> A value to pre-fill the new Buffer with. Default: 0
+  //encoding <String> If fill is a string, this is its encoding. Default: 'utf8'
+  PS:the size must be less than or equal to the value of the Max of Buffer(Buffer.kMaxLength).
+  Otherwise,the RangeError is thrown.
+  ————————————————————————————————————————————————————————
+  Exmaple:
+  const buf=Buffer.alloc(5);
+  
+  // Prints: <Buffer 00 00 00 00 00>
+  console.log(buf);
+  buf.fill('a',utf-8);//default of encoding is 'utf-8'.buf.fill(value,offset,length,encoding)
+  console.log(buf);
+  // Prints: <Buffer 61 61 61 61 61>
+  
+  const buf1 = Buffer.alloc(5, 'a');
+  
+  // Prints: <Buffer 61 61 61 61 61>
+  console.log(buf1);
+  
+  const buf2 = Buffer.alloc(11,'aGVsbG8gd29ybGQ=',base64);
+  // Prints: <Buffer 68 65 6c 6c 6f 20 77 6f 72 6c 64>
+  console.log(buf);
+  ————————————————————————————————————————————————————————
+6.Buffer.allocUnsafe(size)
+  
+  Explain:the different Unsafe and Buffer.alloc  
+  
