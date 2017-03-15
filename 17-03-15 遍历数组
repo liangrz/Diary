@@ -2,12 +2,9 @@
 1、
 for ($i = 0; $i < count($arr); $i++) {
 	if (is_array($arr[$i])) {
-		array_push($arr_temp, $arr);
-		//如果子元素是数组，压栈
-		array_push($i_temp, $i);
-		//同时把现在的下标压入
-		$arr = $arr[$i];
-		//把$arr变成下一级数组，下标$i从0开始，等于for从新开始
+		array_push($arr_temp, $arr);  //如果子元素是数组，压栈
+		array_push($i_temp, $i);  //同时把现在的下标压入
+		$arr = $arr[$i];  //把$arr变成下一级数组，下标$i从0开始，等于for从新开始
 		$i = 0;
 		echo $arr[$i] . '<br>';
 		while ((!empty($arr_temp)) && ($i == (count($arr) - 1))) {
@@ -15,8 +12,7 @@ for ($i = 0; $i < count($arr); $i++) {
 			$i = array_pop($i_temp);
 		}
 	} else {
-		echo $arr[$i] . '<br>';
-		//判断两个，empty是否为空，为空则不pop,$i==count($arr) 要pop
+		echo $arr[$i] . '<br>';  //判断两个，empty是否为空，为空则不pop,$i==count($arr) 要pop
 		while ((!empty($arr_temp)) && ($i == (count($arr) - 1))) {
 			$arr = array_pop($arr_temp);
 			$i = array_pop($i_temp);
