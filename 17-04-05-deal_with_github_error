@@ -1,0 +1,6 @@
+正常官网流程
+$ git init
+$ git add ReadMe.md
+$ git commit -m 'first commit'
+$ git remote add origin https://github.com/xxxx/yyy.git
+$ git push -u origin master
