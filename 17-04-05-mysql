@@ -1,1 +1,5 @@
 mysql listens for 3306
+mysql可以设置登录方式、
+  1、指定本地登录
+  2、指定ip登录
+  3、允许全登录
