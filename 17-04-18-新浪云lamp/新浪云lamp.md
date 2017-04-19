@@ -16,6 +16,8 @@ apache默认的Web站点目录是 '/usr/local/apache/htdocs'
 把里面的xxx改成你想要的目录（例如"/home/www"）  
 重启，ok
 
+httpd: Could not reliably determine the server's fully qualified domain name,using 172.xx.x.xx.Set the 'ServerName directive globally to suppress this message
+
 mysql
 --
 $ yum install mysql mysql-server  
