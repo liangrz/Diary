@@ -1,6 +1,6 @@
 apache
 ---
-####安装   
+#### 安装   
 在http://www.apache.org/dist/httpd/ 找合适自己的版本    
 $ wget http://www.apache.org/dist/httpd/httpd-2.4.25.tar.gz  
 $ tar -zxvf httpd-2.4.25.tar.gz  
@@ -9,8 +9,12 @@ $ ./configure --prefix=/usr/local/apache --enable-module=so
 $ make && make install   
 #### 如果你的系统十分干净，可能会遇到apr not found问题，参考本章问题集锦  
   
-####配置默认Web站点
-apache默认的Web站点目录是 '/usr/local/apache/htdocs',如果需要修改站点目录，可以在'/usr/local/apache/conf/httpd.conf'中,寻找DocumentRoot "xxx"（:/DocumentRoot）,下一行是\<Directory "xxx"\>，把里面的xxx改成你想要的目录（例如"/home/www"），重启，ok
+#### 配置默认Web站点
+apache默认的Web站点目录是 '/usr/local/apache/htdocs'  
+如果需要修改站点目录，可以在'/usr/local/apache/conf/httpd.conf'中  
+寻找DocumentRoot "xxx"（:/DocumentRoot）,下一行是\<Directory "xxx"\>  
+把里面的xxx改成你想要的目录（例如"/home/www"）  
+重启，ok
 
 mysql
 --
