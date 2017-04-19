@@ -30,10 +30,8 @@ yum install php-mysql php-gd php-imap php-ldap php-odbc php-pear php-xml php-xml
 /etc/init.d/httpd restart  
  
 问题集锦
---
-1、没有wget命令  $ yum -y install wget  
-2、没有make命令  $ yum -y install make  
-3、配置./configure ARP not found  
+-- 
+1、配置./configure ARP not found  
  
 
 Test mysql
@@ -41,18 +39,18 @@ Test mysql
 \<?php  
 $con = mysql_connect("10.0.@.@@","@@","@@");  
 if (!$con)  
-  {  
-  die('Could not connect: ' . mysql_error());  
-  }   
+	{  
+		die('Could not connect: ' . mysql_error());  
+	}   
    
 mysql_select_db("mydb", $con);  
    
 $result = mysql_query("SELECT * FROM sys_user");  
    
 while($row = mysql_fetch_array($result))  
-  {  
-  echo $row['UserName'] . " " . $row['PassWord'] . " " . $row['id'];  
-  }  
+	{  
+		echo $row['UserName'] . " " . $row['PassWord'] . " " . $row['id'];  
+	}  
    
 mysql_close($con);  
 \?>
