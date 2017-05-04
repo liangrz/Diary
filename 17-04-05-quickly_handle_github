@@ -4,11 +4,3 @@ $ git add ReadMe.md
 $ git commit -m 'first commit'
 $ git remote add origin https://github.com/xxxx/yyy.git
 $ git push -u origin master
-
-Q1.无法上传上去($ git push -u origin master)
-    1、可能你之前没有初始化——$ git init
-    2、可能你之前没有拉库下来——$ git pull XXX
-    
-Q2.remote这个东西是什么
-  就上面第5行的意思，就是把https://github.com/xxxx/yyy.git的网址，记录成为origin
-  可以使用git remote查询记录的库地址
