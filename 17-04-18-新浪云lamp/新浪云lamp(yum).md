@@ -17,11 +17,11 @@ yum安装apache默认的Web站点目录是 '/var/www'
 
 mysql
 --
-centos7 yum没有mysql-server,so     
-添加mysql到库     
-下载 https://dev.mysql.com/downloads/repo/yum/    
-例如下载的是mysql57-community-release-el7-{version-number}.noarch.rpm     
-$ sudo yum localinstall mysql57-community-release-el7-{version-number}.noarch.rpm    
+centos7 yum没有mysql-server,so       
+添加mysql到库       
+下载 https://dev.mysql.com/downloads/repo/yum/       
+例如下载的是mysql57-community-release-el7-{version-number}.noarch.rpm      
+$ sudo yum localinstall mysql57-community-release-el7-{version-number}.noarch.rpm       
 检查是否添加成功    
 $ yum repolist enabled | grep "mysql.*-community.*"    
 如果出现一列表，应该成功了    
