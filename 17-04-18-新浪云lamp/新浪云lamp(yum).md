@@ -17,16 +17,23 @@ yum安装apache默认的Web站点目录是 '/var/www'
 
 mysql
 --
-由于新浪云不希望你自己安装数据库，想你掏钱买数据库内存，So，新浪云上的yum没有mysql-server的镜像，所以只能编译安装    
-例子版本mysql-5.7.17   
-下载 https://dev.mysql.com/downloads/mysql/
-编译之前，测试是否能cmake和ccmake    
-$ cmake -LH    
-$ ccmake    
-一般显示列表就表示没有问题了
-
-
-https://dev.mysql.com/doc/refman/5.5/en/source-configuration-options.html
+centos7 yum没有mysql-server,so     
+添加mysql到库     
+下载 https://dev.mysql.com/downloads/repo/yum/
+例如下载的是mysql57-community-release-el7-{version-number}.noarch.rpm   
+$ sudo yum localinstall mysql57-community-release-el7-{version-number}.noarch.rpm
+检查是否添加成功    
+$ yum repolist enabled | grep "mysql.*-community.*"    
+如果出现一列表，应该成功了    
+安装    
+$ yum install mysql-community-server
+测试    
+$ service mysqld start
+//Starting mysqld:[ OK ]     
+$ service mysqld status    
+//mysqld (pid 3066) is running.    
+出现斜杠内容就代表成功    
+参考https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html
  
 php
 --
