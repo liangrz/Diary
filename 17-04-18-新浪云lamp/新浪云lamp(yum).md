@@ -26,15 +26,15 @@ $ sudo yum localinstall mysql57-community-release-el7-{version-number}.noarch.rp
 $ yum repolist enabled | grep "mysql.*-community.*"    
 如果出现一列表，应该成功了    
 安装    
-$ yum install mysql-community-server
+$ yum install mysql-community-server    
 测试    
-$ service mysqld start
-//Starting mysqld:[ OK ]     
-$ service mysqld status    
-//mysqld (pid 3066) is running.    
-出现斜杠内容就代表成功    
+$ service mysqld start    
+//Starting mysqld:[ OK ]       
+$ service mysqld status       
+//mysqld (pid 3066) is running.       
+出现斜杠内容就代表成功      
 参考https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html
- 
+    
 php
 --
 $ yum install php php-devel  
