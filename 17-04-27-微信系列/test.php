@@ -1,5 +1,6 @@
 <?php
 /*
+    CopyRight 2011-2017 All Rights Reserved
 */
 
 header('Content-type:text');
@@ -14,8 +15,7 @@ if (!isset($_GET['echostr'])) {
 
 class wechatCallbackapiTest
 {
-    public function valid()
-    {
+    public function valid(){
         $echoStr = $_GET["echostr"];
         if($this->checkSignature()){
             echo $echoStr;
@@ -23,8 +23,7 @@ class wechatCallbackapiTest
         }
     }
 
-    private function checkSignature()
-    {
+    private function checkSignature(){
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -41,14 +40,13 @@ class wechatCallbackapiTest
         }
     }
 
-    public function responseMsg()
-    {
-        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-        if (!empty($postStr)){
+    public function responseMsg(){//如果有post数据
+        if (!empty($GLOBALS["HTTP_RAW_POST_DATA"])){
+			$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+			file_put_contents('./post.html',$postStr);
             $this->logger("R ".$postStr);
             $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
             $RX_TYPE = trim($postObj->MsgType);
-
             switch ($RX_TYPE)
             {
                 case "event":
@@ -66,8 +64,8 @@ class wechatCallbackapiTest
         }
     }
     
-    private function receiveEvent($object)
-    {
+    private function receiveEvent($object){
+		
         $content = "";
         switch ($object->Event)
         {
@@ -83,8 +81,8 @@ class wechatCallbackapiTest
     }
     
     //接收文本消息
-    private function receiveText($object)
-    {
+    private function receiveText($object){
+		
         $keyword = trim($object->Content);
         $content = date("Y-m-d H:i:s",time());
         
@@ -102,8 +100,7 @@ class wechatCallbackapiTest
     }
 
     
-    private function transmitText($object, $content)
-    {
+    private function transmitText($object, $content){
         $textTpl = "<xml>
 <ToUserName><![CDATA[%s]]></ToUserName>
 <FromUserName><![CDATA[%s]]></FromUserName>
@@ -115,8 +112,7 @@ class wechatCallbackapiTest
         return $result;
     }
 
-    private function transmitNews($object, $arr_item)
-    {
+    private function transmitNews($object, $arr_item){
         if(!is_array($arr_item))
             return;
 
@@ -146,8 +142,7 @@ $item_str</Articles>
         return $result;
     }
 
-    private function transmitMusic($object, $musicArray)
-    {
+    private function transmitMusic($object, $musicArray){
         $itemTpl = "<Music>
     <Title><![CDATA[%s]]></Title>
     <Description><![CDATA[%s]]></Description>
@@ -169,9 +164,9 @@ $item_str
         return $result;
     }
     
-    private function logger($log_content)
-    {
-        if(isset($_SERVER['HTTP_APPNAME'])){   //SAE
+    private function logger($log_content){
+		
+     	 if(isset($_SERVER['HTTP_APPNAME'])){   //SAE
             sae_set_display_errors(false);
             sae_debug($log_content);
             sae_set_display_errors(true);
