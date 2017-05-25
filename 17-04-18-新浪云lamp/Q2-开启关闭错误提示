@@ -1,0 +1,3 @@
+$ vim php.ini<br>
+找到display_errors = On 修改为 display_errors = off;<br>
+以上为关闭，开启类似
