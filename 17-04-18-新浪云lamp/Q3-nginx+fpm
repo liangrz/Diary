@@ -1,0 +1,3 @@
+$ yum install nginx<br>
+$ service nginx status<br>
+$ service nginx start
